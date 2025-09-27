@@ -145,10 +145,15 @@
             <label for="floatingInput">Email Id</label>
           </div>
 
-          <!-- Password -->
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
-            <label for="floatingPassword">Password</label>
+          <!-- Password with eye icon -->
+          <div class="input-group mb-3">
+            <div class="form-floating flex-grow-1">
+              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+              <i class="bi bi-eye" id="eyeIcon"></i>
+            </button>
           </div>
 
           <!-- Submit -->
@@ -191,6 +196,31 @@
             </ul>
         </footer>
     </div>
+
+
+    <script>
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#floatingPassword");
+  const eyeIcon = document.querySelector("#eyeIcon");
+
+  togglePassword.addEventListener("click", function () {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+
+    // toggle eye / eye-slash
+    if (type === "password") {
+      eyeIcon.classList.remove("bi-eye-slash");
+      eyeIcon.classList.add("bi-eye");
+    } else {
+      eyeIcon.classList.remove("bi-eye");
+      eyeIcon.classList.add("bi-eye-slash");
+    }
+  });
+</script>
+<!-- Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
     <!-- Footer Closed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
