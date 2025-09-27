@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2025 at 12:38 PM
+-- Generation Time: Sep 28, 2025 at 12:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,42 +44,53 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `catering`
+-- Table structure for table `complaint`
 --
 
-CREATE TABLE `catering` (
-  `catering_id` int(11) NOT NULL,
-  `catering_name` varchar(50) NOT NULL,
-  `catering_owner` varchar(50) NOT NULL,
-  `catering_no` varchar(50) NOT NULL,
-  `catering_location` varchar(50) NOT NULL,
-  `catering_email` varchar(50) NOT NULL,
-  `catering_pass` varchar(50) NOT NULL
+CREATE TABLE `complaint` (
+  `com_id` int(11) NOT NULL,
+  `com_name` varchar(30) NOT NULL,
+  `com_address` varchar(60) NOT NULL,
+  `com_contact` int(10) NOT NULL,
+  `com_email` varchar(20) NOT NULL,
+  `com_password` varchar(20) NOT NULL,
+  `com_complaint` varchar(20) NOT NULL,
+  `com_img` varchar(100) NOT NULL,
+  `com_video` varchar(100) NOT NULL,
+  `com_audio` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `catering`
---
-
-INSERT INTO `catering` (`catering_id`, `catering_name`, `catering_owner`, `catering_no`, `catering_location`, `catering_email`, `catering_pass`) VALUES
-(1, '3Star', 'Amal Joshy', '9887659887', 'Kozhikode', '3star123@gmail.com', '3star123@'),
-(2, '5star', 'albin', '9865875498', 'kollam', '5star@gmail.com', '5star@');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `food`
+-- Table structure for table `complaintp`
 --
 
-CREATE TABLE `food` (
-  `food_id` int(11) NOT NULL,
-  `food_name` varchar(20) NOT NULL,
-  `food_quantity` varchar(20) NOT NULL,
-  `food_type` varchar(20) NOT NULL,
-  `food_img` varchar(100) NOT NULL,
-  `food_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `food_location` varchar(20) NOT NULL,
-  `catering_id` int(11) NOT NULL
+CREATE TABLE `complaintp` (
+  `staff_id` int(11) NOT NULL,
+  `from_name` varchar(20) NOT NULL,
+  `from_contact` int(10) NOT NULL,
+  `from_email` varchar(20) NOT NULL,
+  `to_name` varchar(20) NOT NULL,
+  `to_contact` int(10) NOT NULL,
+  `to_email` varchar(20) NOT NULL,
+  `crime_name` varchar(20) NOT NULL,
+  `audio` varchar(100) NOT NULL,
+  `video` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crime`
+--
+
+CREATE TABLE `crime` (
+  `fir_id` int(10) NOT NULL,
+  `crime_name` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -99,13 +110,26 @@ CREATE TABLE `request` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `staff`
+--
+
+CREATE TABLE `staff` (
+  `staff_id` int(11) NOT NULL,
+  `staff_name` varchar(20) NOT NULL,
+  `crime_name` varchar(20) NOT NULL,
+  `fir_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(20) NOT NULL,
-  `user_location` varchar(20) NOT NULL,
+  `user_address` varchar(50) NOT NULL,
   `user_phno` varchar(20) NOT NULL,
   `user_email` varchar(20) NOT NULL,
   `user_password` varchar(20) NOT NULL
@@ -115,7 +139,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `user_location`, `user_phno`, `user_email`, `user_password`) VALUES
+INSERT INTO `user` (`user_id`, `user_name`, `user_address`, `user_phno`, `user_email`, `user_password`) VALUES
 (1, 'Aswin', 'Kozhikode', '9865988754', 'aswin123@gmail.com', 'aswin123@'),
 (2, 'Amar', 'Ernakulam', '9887549865', 'amar123@gmail.com', 'amar123@'),
 (3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@'),
@@ -132,16 +156,22 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `catering`
+-- Indexes for table `complaint`
 --
-ALTER TABLE `catering`
-  ADD PRIMARY KEY (`catering_id`);
+ALTER TABLE `complaint`
+  ADD PRIMARY KEY (`com_id`);
 
 --
--- Indexes for table `food`
+-- Indexes for table `complaintp`
 --
-ALTER TABLE `food`
-  ADD PRIMARY KEY (`food_id`);
+ALTER TABLE `complaintp`
+  ADD PRIMARY KEY (`staff_id`);
+
+--
+-- Indexes for table `crime`
+--
+ALTER TABLE `crime`
+  ADD PRIMARY KEY (`fir_id`);
 
 --
 -- Indexes for table `request`
@@ -166,16 +196,22 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `catering`
+-- AUTO_INCREMENT for table `complaint`
 --
-ALTER TABLE `catering`
-  MODIFY `catering_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `complaint`
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `food`
+-- AUTO_INCREMENT for table `complaintp`
 --
-ALTER TABLE `food`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `complaintp`
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `crime`
+--
+ALTER TABLE `crime`
+  MODIFY `fir_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request`
