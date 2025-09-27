@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food-Bee: Admin-Login</title>
+    <title>Crime: Admin-Login</title>
     <link rel="stylesheet" href="User/static/home.css">
     <link rel="icon" href="../static/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -61,7 +61,7 @@
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="col-md-3 mb-2 mb-md-0">
                 <a href="../../index.html" class="d-inline-flex link-body-emphasis text-decoration-none fw-bold">
-                    <div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div>
+                    <div class="fs-3 fw-semibold">Crime Reporting</div>
                 </a>
             </div>
         </header>
@@ -79,14 +79,14 @@
                                 <p class="text-center h2 fw-bold mb-4 mx-1 mx-md-4 mt-4">Sign in</p>
                                 <form class="mx-1 mx-md-4" method="post">
                                     <div class="d-flex flex-row align-items-center mb-3">
-                                        <i class="bi bi-envelope me-3 text-warning form-icon"></i>
+                                        <i class="bi bi-envelope me-3 form-icon"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="email" class="form-control rounded-4 border-0 p-3 shadow-sm" placeholder="Enter email id" name="email" required/>
                                         </div>
                                     </div>
                                     <!-- Password -->
                                     <div class="d-flex flex-row align-items-center mb-3">
-                                        <i class="bi bi-shield-lock me-3 text-warning form-icon"></i>
+                                        <i class="bi bi-shield-lock me-3 form-icon"></i>
                                         <div class="form-outline flex-fill position-relative mb-0">
                                             <div class="input-group shadow-sm rounded-4">
                                                 <input type="password" class="form-control rounded-4 border-0 p-3 shadow-none" name="pass" placeholder="Enter Password" required />
@@ -96,7 +96,7 @@
                                     </div>
                                                                         
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" name="admlog" class="btn btn-warning rounded-pill px-5 btn-lg">Login</button>
+                                        <button type="submit" name="admlog" class="btn btn-primary rounded-pill px-5 btn-lg">Login</button>
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
@@ -139,7 +139,7 @@ echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" 
     <div class="footer-container container fixed-bottom">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
-                <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
+                <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>
             </div>
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                 <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>

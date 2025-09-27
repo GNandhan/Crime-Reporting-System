@@ -25,11 +25,11 @@
   <div id="wrapper">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <h2><div class="fs-3 fw-semibold">Food<span class="text-warning">Bee</span></div></h2>
+        <h2><div class="fs-3 fw-semibold">Crime Reporting</div></h2>
       </div>
       <ul class="sidebar-nav">
         <li class="active"><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="./admin-catering.php"><i class="fa fa-plug"></i>Catering</a></li>
+        <li><a href="./admin-complaint.php"><i class="fa fa-plug"></i>Complaints</a></li>
         <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
         <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
       </ul>
@@ -105,7 +105,7 @@ $user_count = $row['user_count'];
   <div class="container-fluid" >
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
-        <span class="mb-3 mb-md-0 text-dark">&copy; 2024 FoodBee, Inc</span>
+        <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>
       </div>
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
