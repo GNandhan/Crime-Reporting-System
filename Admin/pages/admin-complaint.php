@@ -54,7 +54,7 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Catering Agencies</h2>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">COMPLAINTS</h2>
           <div class="container">
             <div class="row my-5">
 <?php  

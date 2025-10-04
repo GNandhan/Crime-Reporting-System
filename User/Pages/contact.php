@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Page</title>
+    <title>Signin Page</title>
     <link rel="icon" href="../Images/logo.png">
     <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -42,7 +42,7 @@
     <nav class="navbar navbar-expand-lg fnt" style="background-color: #0d6efd;">
         <div class="container-fluid mx-auto">
             <a class="navbar-brand" href="#">
-                <img src="../images/logo.png" alt="" width="100%" height="30px">
+                <img src="../Images/logo.png" alt="" width="100%" height="30px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,19 +54,19 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.html">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./track.html">Track your Complaint</a>
+                        <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./contact.html">Contact</a>
+                        <a class="nav-link text-white" href="./contact.php">Contact</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="./signin.html">Login</a>
+                            <a class="nav-link text-white" href="./signin.php">Login</a>
                         </li>
                     </ul>
                 </form>
@@ -102,76 +102,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none" href="../../index.html">Home</a> > Signup
+                            <a class="text-dark text-decoration-none fnt" href="../../index.html">Home</a> > Contact
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Sign Up</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form>
-          <!-- Name -->
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Enter your name" required>
-            <label for="floatingName">Full Name</label>
-          </div>
-
-          <!-- Location -->
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingLocation" placeholder="Enter your Address" required>
-            <label for="floatingLocation">Address</label>
-          </div>
-
-          <!-- Phone -->
-          <div class="form-floating mb-3">
-            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
-            <label for="floatingPhone">Phone Number</label>
-          </div>
-
-          <!-- Email -->
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Email Id</label>
-          </div>
-
-          <!-- Password with eye icon -->
-          <div class="input-group mb-3">
-            <div class="form-floating flex-grow-1">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
-              <label for="floatingPassword">Password</label>
-            </div>
-            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-              <i class="bi bi-eye" id="eyeIcon"></i>
-            </button>
-          </div>
-
-          <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
-          <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
-
-          <hr class="my-4">
-
-          <!-- Register Link -->
-          <div class="text-center">
-            <div>or</div>
-            <a href="./signin.html" class="h6 text-decoration-none">Login now</a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
     <!-- Footer -->
@@ -196,31 +133,6 @@
             </ul>
         </footer>
     </div>
-
-
-    <script>
-  const togglePassword = document.querySelector("#togglePassword");
-  const password = document.querySelector("#floatingPassword");
-  const eyeIcon = document.querySelector("#eyeIcon");
-
-  togglePassword.addEventListener("click", function () {
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
-
-    // toggle eye / eye-slash
-    if (type === "password") {
-      eyeIcon.classList.remove("bi-eye-slash");
-      eyeIcon.classList.add("bi-eye");
-    } else {
-      eyeIcon.classList.remove("bi-eye");
-      eyeIcon.classList.add("bi-eye-slash");
-    }
-  });
-</script>
-<!-- Bootstrap Icons CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-
     <!-- Footer Closed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

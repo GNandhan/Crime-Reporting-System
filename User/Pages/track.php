@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signin Page</title>
+    <title>Track Page</title>
     <link rel="icon" href="../Images/logo.png">
     <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -54,19 +54,19 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.html">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./track.html">Track your Complaint</a>
+                        <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./contact.html">Contact</a>
+                        <a class="nav-link text-white" href="./contact.php">Contact</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="../Pages/signin.html">Login</a>
+                            <a class="nav-link text-white" href="./signin.php">Login</a>
                         </li>
                     </ul>
                 </form>
@@ -82,8 +82,7 @@
                 <div class="container border-start">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none h4" href="../../index.html">अपराध रिपोर्टिंग
-                                पोर्टल</a>
+                            <a class="text-dark text-decoration-none h4" href="../../index.html">अपराध रिपोर्टिंग पोर्टल</a>
                         </div>
                     </div>
                     <div class="row">
@@ -97,13 +96,14 @@
         </div>
     </div>
     <!-- Header closed -->
-    <div class="container-fluid p-3 ">
+    <div class="container-fluid p-3 border-bottom">
         <div class="row">
             <div class="col">
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none" href="../../index.html">Home</a> > Signin
+                            <a class="text-dark text-decoration-none" href="../../index.html">Home</a> > Track your
+                            Complaint
                         </div>
                     </div>
                 </div>
@@ -111,49 +111,53 @@
         </div>
     </div>
 
+ <!-- Tracking Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg col-md col-sm col">
+            <div class="card rounded-4 m-5 p-4">
+                <h6 class="border-bottom pb-2">Track your Complaint Status</h6>
 
-<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Sign In</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form>
-          <!-- User ID -->
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Email Id</label>
-          </div>
+                <!-- Acknowledgement No + OTP -->
+                <div class="row align-items-center mb-3">
+                    <label class="col-sm-4 fw-bold">Acknowledgement No. <span class="text-danger">*</span>:</label>
+                    <div class="col-sm d-flex gap-2">
+                        <input type="text" class="form-control rounded-3" placeholder="Enter Acknowledgement No.">
+                        <button class="btn btn-warning px-5 rounded-3">Get OTP</button>
+                    </div>
+                </div>
+                
+                <!-- OTP Input -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control rounded-3" placeholder="Enter OTP here...">
+                    </div>
+                </div>
 
-          <!-- Password with eye icon -->
-          <div class="input-group mb-3">
-            <div class="form-floating flex-grow-1">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
-              <label for="floatingPassword">Password</label>
+                <!-- Captcha -->
+                <div class="row align-items-center mb-3">
+                    <label class="col-sm-4 fw-bold">Enter Captcha:</label>
+                    <div class="col-sm-8 d-flex gap-2 align-items-center">
+                        <input type="text" class="form-control rounded-3" placeholder="Enter Captcha">
+                        <img src="../Images/" alt="captcha" style="height:40px; border:1px solid #ccc;">
+                        <button class="btn btn-light">&#x21bb;</button>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <button class="btn btn-success rounded-3">Submit</button>
+                    </div>
+                </div>
+
             </div>
-            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-              <i class="bi bi-eye" id="eyeIcon"></i>
-            </button>
-          </div>
-
-          <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign in</button>
-          <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
-
-          <hr class="my-4">
-
-          <!-- Register Link -->
-          <div class="text-center">
-            <div>or</div>
-            <a href="./signup.html" class="h6 text-decoration-none">Register now</a>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
+<!-- Tracking form closed -->
 
 
     <!-- Footer -->
@@ -178,29 +182,6 @@
             </ul>
         </footer>
     </div>
-
-<script>
-  const togglePassword = document.querySelector("#togglePassword");
-  const password = document.querySelector("#floatingPassword");
-  const eyeIcon = document.querySelector("#eyeIcon");
-
-  togglePassword.addEventListener("click", function () {
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
-
-    // toggle eye / eye-slash
-    if (type === "password") {
-      eyeIcon.classList.remove("bi-eye-slash");
-      eyeIcon.classList.add("bi-eye");
-    } else {
-      eyeIcon.classList.remove("bi-eye");
-      eyeIcon.classList.add("bi-eye-slash");
-    }
-  });
-</script>
-<!-- Bootstrap Icons CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
     <!-- Footer Closed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

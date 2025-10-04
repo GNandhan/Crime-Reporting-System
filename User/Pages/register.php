@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signin Page</title>
+    <title>Register Page</title>
     <link rel="icon" href="../Images/logo.png">
     <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -54,19 +54,19 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.html">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./track.html">Track your Complaint</a>
+                        <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./contact.html">Contact</a>
+                        <a class="nav-link text-white" href="./contact.php">Contact</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="./signin.html">Login</a>
+                            <a class="nav-link text-white" href="../Pages/signin.php">Login</a>
                         </li>
                     </ul>
                 </form>
@@ -102,13 +102,89 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none fnt" href="../../index.html">Home</a> > Contact
+                            <a class="text-dark text-decoration-none" href="../../index.html">Home</a> > Register a complaint
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Complaint Form</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form>
+          <!-- Name & Phone (same row) -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your Name" required>
+                <label for="floatingName">Name</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="9876543210" pattern="[0-9]{10}" required>
+                <label for="floatingPhone">Phone Number</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-floating my-3">
+            <textarea class="form-control rounded-3" id="floatingAddress" placeholder="Your Address" style="height: 100px;" required></textarea>
+            <label for="floatingAddress">Address</label>
+          </div>
+
+          <!-- Email & Password (same row) -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" required>
+                <label for="floatingEmail">Email Id</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Complaint -->
+          <div class="form-floating my-3">
+            <textarea class="form-control rounded-3" id="floatingComplaint" placeholder="Write your complaint here..." style="height: 120px;" required></textarea>
+            <label for="floatingComplaint">Complaint</label>
+          </div>
+
+          <!-- Uploads -->
+          <div class="mb-3">
+            <label for="uploadImage" class="form-label">Upload Image</label>
+            <input class="form-control" type="file" id="uploadImage" accept="image/*">
+          </div>
+
+          <div class="mb-3">
+            <label for="uploadVideo" class="form-label">Upload Video</label>
+            <input class="form-control" type="file" id="uploadVideo" accept="video/*">
+          </div>
+
+          <!-- Submit -->
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Submit</button>
+          <small class="text-body-secondary">By clicking Submit, you agree to the terms of use.</small>
+
+          <hr class="my-4">
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     <!-- Footer -->
