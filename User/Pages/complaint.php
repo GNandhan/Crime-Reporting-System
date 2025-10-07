@@ -201,7 +201,7 @@
     $compass= $_POST["compass"];
     $comcompl= $_POST["comcompl"];
 
-$sql = mysqli_query($conn,"INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_compl)
+$sql = mysqli_query($conn,"INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_complaint)
  VALUES ('$comname', '$commob', '$comaddress', '$commail', '$compass', '$comcompl')");
 
 if ($sql == TRUE)
