@@ -60,7 +60,7 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
@@ -176,9 +176,9 @@ if($check>0)
 {
   $_SESSION["email"] = $email;  
   $_SESSION["password"] = $password;  
- header("location: register.php");
+ header("location: complaint.php");
 
- echo '<script type="text/javascript">window.location = "register.php"</script>';
+ echo '<script type="text/javascript">window.location = "complaint.php"</script>';
 } 
 else
 {

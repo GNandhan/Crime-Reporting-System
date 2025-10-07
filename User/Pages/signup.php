@@ -1,3 +1,7 @@
+<?php
+ include './connect.php';
+//  error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +58,7 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
@@ -120,35 +124,35 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-5 pt-0">
-        <form>
+        <form method="post">
           <!-- Name -->
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Enter your name" required>
+            <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Enter your name" name="cusname" required>
             <label for="floatingName">Full Name</label>
           </div>
 
           <!-- Location -->
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-3" id="floatingLocation" placeholder="Enter your Address" required>
+            <input type="text" class="form-control rounded-3" id="floatingLocation" placeholder="Enter your Address"  name="cusaddress" required>
             <label for="floatingLocation">Address</label>
           </div>
 
           <!-- Phone -->
           <div class="form-floating mb-3">
-            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Enter your phone number" pattern="[0-9]{10}"  name="cusmob" required>
             <label for="floatingPhone">Phone Number</label>
           </div>
 
           <!-- Email -->
           <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" required>
+            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com"  name="cusemail" required>
             <label for="floatingInput">Email Id</label>
           </div>
 
           <!-- Password with eye icon -->
           <div class="input-group mb-3">
             <div class="form-floating flex-grow-1">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
+              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="cuspass" required>
               <label for="floatingPassword">Password</label>
             </div>
             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
@@ -157,7 +161,7 @@
           </div>
 
           <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"  name="cussubmit">Sign up</button>
           <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
 
           <hr class="my-4">
@@ -172,6 +176,33 @@
     </div>
   </div>
 </div>
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["cussubmit"]))
+    {
+    $cuname= $_POST["cusname"];
+    $cumob= $_POST["cusmob"];
+    $cuaddress= $_POST["cusaddress"];
+    $cumail= $_POST["cusemail"];
+    $cupass= $_POST["cuspass"];
+
+$sql = mysqli_query($conn,"INSERT INTO user(user_name, user_phno, user_email, user_password)
+ VALUES ('$cuname', '$cumob', '$cumail', '$cupass')");
+
+if ($sql == TRUE)
+{
+// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+echo '<script type="text/javascript">
+window.location = "signin.php"
+</script>';
+} 
+else
+{
+// echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
+echo 'wrong username or password'; 
+}
+}
+?>
 
 
     <!-- Footer -->

@@ -1,10 +1,14 @@
+<?php
+ include './connect.php';
+//  error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Page</title>
+    <title>Complaint Page</title>
     <link rel="icon" href="../Images/logo.png">
     <link rel="stylesheet" href="../Css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -54,7 +58,7 @@
                         <a class="nav-link text-white" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="./register.php">Register a Complaint</a>
+                        <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./track.php">Track your Complaint</a>
@@ -118,18 +122,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-5 pt-0">
-        <form>
+        <form method="post">
           <!-- Name & Phone (same row) -->
           <div class="row g-3">
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your Name" required>
+                <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your Name" name="comname" required>
                 <label for="floatingName">Name</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="9876543210" pattern="[0-9]{10}" required>
+                <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="9876543210" pattern="[0-9]{10}" name="commob" required>
                 <label for="floatingPhone">Phone Number</label>
               </div>
             </div>
@@ -137,7 +141,7 @@
 
           <!-- Address -->
           <div class="form-floating my-3">
-            <textarea class="form-control rounded-3" id="floatingAddress" placeholder="Your Address" style="height: 100px;" required></textarea>
+            <textarea class="form-control rounded-3" id="floatingAddress" placeholder="Your Address" style="height: 100px;" name="comaddress" required></textarea>
             <label for="floatingAddress">Address</label>
           </div>
 
@@ -145,13 +149,13 @@
           <div class="row g-3">
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" required>
+                <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" name="comemail" required>
                 <label for="floatingEmail">Email Id</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating">
-                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
+                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="compass" required>
                 <label for="floatingPassword">Password</label>
               </div>
             </div>
@@ -159,7 +163,7 @@
 
           <!-- Complaint -->
           <div class="form-floating my-3">
-            <textarea class="form-control rounded-3" id="floatingComplaint" placeholder="Write your complaint here..." style="height: 120px;" required></textarea>
+            <textarea class="form-control rounded-3" id="floatingComplaint" placeholder="Write your complaint here..." style="height: 120px;" name="comcompl" required></textarea>
             <label for="floatingComplaint">Complaint</label>
           </div>
 
@@ -175,7 +179,7 @@
           </div>
 
           <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Submit</button>
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="comsubmit">Submit</button>
           <small class="text-body-secondary">By clicking Submit, you agree to the terms of use.</small>
 
           <hr class="my-4">
@@ -186,6 +190,34 @@
   </div>
 </div>
 
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["comsubmit"]))
+    {
+    $comname= $_POST["comname"];
+    $commob= $_POST["commob"];
+    $comaddress= $_POST["comaddress"];
+    $commail= $_POST["comemail"];
+    $compass= $_POST["compass"];
+    $comcompl= $_POST["comcompl"];
+
+$sql = mysqli_query($conn,"INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_compl)
+ VALUES ('$comname', '$commob', '$comaddress', '$commail', '$compass', '$comcompl')");
+
+if ($sql == TRUE)
+{
+// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+echo '<script type="text/javascript">
+window.location = "signin.php"
+</script>';
+} 
+else
+{
+// echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
+echo 'wrong username or password'; 
+}
+}
+?>
 
     <!-- Footer -->
     <div class="container">
