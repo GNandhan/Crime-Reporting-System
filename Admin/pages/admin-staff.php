@@ -31,7 +31,7 @@
         <li><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="./admin-complaint.php"><i class="fa fa-plug"></i>Complaints</a></li>
         <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
-        <li class="active"><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
+        <li class="active"><a href="./admin-staff.php"><i class="fa fa-user"></i>Staff</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
@@ -54,33 +54,33 @@
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-          <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Food List</h2>
+          <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Staff List</h2>
           <div class="container">
             <div class="row my-5">
 <?php  
-$sql=mysqli_query($conn,"SELECT * FROM food ORDER BY food_id ");
+$sql=mysqli_query($conn,"SELECT * FROM staff ORDER BY staff_id ");
 $serialNo = 1;
 while($row=mysqli_fetch_assoc($sql))
 {
-    $food_id=$row['food_id'];
-    $food_name=$row['food_name'];
-    $food_qua=$row['food_quantity'];
-    $food_type=$row['food_type'];
-    $food_img=$row['food_img'];
-    $food_date=$row['food_date'];
-    $food_location=$row['food_location'];
-    $food_catid=$row['catering_id'];
+    $staff_id=$row['staff_id'];
+    $staff_name=$row['staff_name'];
+    $staff_qua=$row['staff_quantity'];
+    $staff_type=$row['staff_type'];
+    $staff_img=$row['staff_img'];
+    $staff_date=$row['staff_date'];
+    $staff_location=$row['staff_location'];
+    $staff_catid=$row['catering_id'];
 ?>
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
                 <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
-                  <img src="../../Catering/static/food/<?php echo $food_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
+                  <img src="../../Catering/static/staff/<?php echo $staff_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
                   <div class="card-body">
-                    <div class="card-title fs-2 fw-bold"><?php echo $food_name; ?></div>
-                    <p class="card-text text-secondary"><?php echo $food_qua; ?></p>
-                    <p class="card-text text-secondary"><?php echo $food_type; ?></p>
+                    <div class="card-title fs-2 fw-bold"><?php echo $staff_name; ?></div>
+                    <p class="card-text text-secondary"><?php echo $staff_qua; ?></p>
+                    <p class="card-text text-secondary"><?php echo $staff_type; ?></p>
                     <p class="card-text text-secondary"><?php echo $us_mail; ?></p>
-                    <p class="card-text text-secondary"><?php echo $food_location; ?></p>
-                    <p class="card-text text-dark"><?php echo $food_date; ?></p>
+                    <p class="card-text text-secondary"><?php echo $staff_location; ?></p>
+                    <p class="card-text text-dark"><?php echo $staff_date; ?></p>
                   </div>
                 </div>
               </div>

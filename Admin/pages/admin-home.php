@@ -31,7 +31,7 @@
         <li class="active"><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="./admin-complaint.php"><i class="fa fa-plug"></i>Complaints</a></li>
         <li><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
-        <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
+        <li><a href="./admin-staff.php"><i class="fa fa-user"></i>Staff</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
@@ -57,9 +57,9 @@ $result = $conn->query("SELECT COUNT(*) AS catering_count FROM catering");
 $row = $result->fetch_assoc();
 $catering_count = $row['catering_count'];
 
-$result = $conn->query("SELECT COUNT(*) AS food_count FROM food");
+$result = $conn->query("SELECT COUNT(*) AS staff_count FROM staff");
 $row = $result->fetch_assoc();
-$food_count = $row['food_count'];
+$staff_count = $row['staff_count'];
 
 $result = $conn->query("SELECT COUNT(*) AS user_count FROM user");
 $row = $result->fetch_assoc();
@@ -69,13 +69,13 @@ $user_count = $row['user_count'];
       <div class="row">
         <div class="col-lg-12">
         <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Dashboard</h2>
-        <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-warning mb-5">Admin dashboard now displays catering agencies, food items, and user profiles</div>
+        <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-primary mb-5">Admin dashboard now displays Complaints, Staffs, and User Details</div>
           <div class="container" style="width:90%;">
             <div class="row my-5">
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
-                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">CATERING</h5>
+                    <h5 class="card-title fs-1 text-end fw-bold text-primary border-end px-2 border-2 border-primary">COMPLAINTS</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $catering_count; ?></div>
                   </div>
                 </div>
@@ -83,15 +83,15 @@ $user_count = $row['user_count'];
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
-                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">FOOD</h5>
-                    <div class="card-text fw-bold display-3 "><?php echo $food_count; ?></div>
+                    <h5 class="card-title fs-1 text-end fw-bold text-primary border-end px-2 border-2 border-primary">STAFF</h5>
+                    <div class="card-text fw-bold display-3 "><?php echo $staff_count; ?></div>
                   </div>
                 </div>
               </div>
               <div class="col-lg col-md-4 col-sm-6 col-12 my-1">
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
-                    <h5 class="card-title fs-1 text-end fw-bold text-warning border-end px-2 border-2 border-warning">USER</h5>
+                    <h5 class="card-title fs-1 text-end fw-bold text-primary border-end px-2 border-2 border-primary">USER</h5>
                     <div class="card-text fw-bold display-3 "><?php echo $user_count; ?></div>
                   </div>
                 </div>

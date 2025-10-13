@@ -131,7 +131,8 @@ if($check>0)
 } 
 else
 {
-echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" . $conn->error."');</script>";
+echo "<script type='text/javascript'>alert('Wrong Email or Password');</script>";
+
 }
 }
 ?>

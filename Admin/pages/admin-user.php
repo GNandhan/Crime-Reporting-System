@@ -31,7 +31,7 @@
         <li><a href="./admin-home.php"><i class="fa fa-home"></i>Home</a></li>
         <li><a href="./admin-complaint.php"><i class="fa fa-plug"></i>Complaints</a></li>
         <li class="active"><a href="./admin-user.php"><i class="fa fa-user"></i>Users</a></li>
-        <li><a href="./admin-food.php"><i class="fa fa-user"></i>Food</a></li>
+        <li><a href="./admin-staff.php"><i class="fa fa-user"></i>Staff</a></li>
       </ul>
     </aside>
     <div id="navbar-wrapper">
