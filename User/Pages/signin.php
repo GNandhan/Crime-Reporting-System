@@ -1,8 +1,8 @@
 <?php
  include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
  session_start();
- $_SESSION["email"]='';
+//  $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -172,14 +172,12 @@ if(isset($_POST["usrlog"]))
   $sq=mysqli_query($conn,"SELECT * FROM user WHERE user_email='$email' and user_password='$password'");
   $check=mysqli_num_rows($sq);
   
-if($check>0)
-{
-  $_SESSION["email"] = $email;  
-  $_SESSION["password"] = $password;  
- header("location: complaint.php");
+if($check > 0) {
+  $_SESSION["email"] = $email;
+  $_SESSION["password"] = $password;
+  echo '<script>window.location.href = "complaint.php";</script>';
+}
 
- echo '<script type="text/javascript">window.location = "complaint.php"</script>';
-} 
 else
 {
 echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" . $conn->error."');</script>";
