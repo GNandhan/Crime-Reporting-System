@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2025 at 12:14 AM
+-- Generation Time: Oct 14, 2025 at 08:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_pass`) VALUES
-(1, 'fbeeadmin', 'fbeeadmin@gmail.com', 'fbeeadmin@');
+(1, 'crimeadmin', 'crimeadmin@gmail.com', 'crimeadmin@');
 
 -- --------------------------------------------------------
 
@@ -59,6 +59,13 @@ CREATE TABLE `complaint` (
   `com_video` varchar(100) NOT NULL,
   `com_audio` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `complaint`
+--
+
+INSERT INTO `complaint` (`com_id`, `com_name`, `com_address`, `com_contact`, `com_email`, `com_password`, `com_complaint`, `com_img`, `com_video`, `com_audio`) VALUES
+(1, 'comname', 'comaddress', 2147483647, 'comemail@gmail.com', 'compassword', 'complaint 1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -120,6 +127,14 @@ CREATE TABLE `staff` (
   `fir_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staff_id`, `staff_name`, `crime_name`, `fir_id`) VALUES
+(1, 'police1', 'IPC302', 10001),
+(2, 'police2', 'FIR269', 10002);
+
 -- --------------------------------------------------------
 
 --
@@ -132,18 +147,20 @@ CREATE TABLE `user` (
   `user_address` varchar(50) NOT NULL,
   `user_phno` varchar(20) NOT NULL,
   `user_email` varchar(20) NOT NULL,
-  `user_password` varchar(20) NOT NULL
+  `user_password` varchar(20) NOT NULL,
+  `user_compl` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `user_name`, `user_address`, `user_phno`, `user_email`, `user_password`) VALUES
-(1, 'Aswin', 'Kozhikode', '9865988754', 'aswin123@gmail.com', 'aswin123@'),
-(2, 'Amar', 'Ernakulam', '9887549865', 'amar123@gmail.com', 'amar123@'),
-(3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@'),
-(4, 'Goutham', 'Kollam', '9865875498', 'goutham123@gmail.com', 'goutham123@');
+INSERT INTO `user` (`user_id`, `user_name`, `user_address`, `user_phno`, `user_email`, `user_password`, `user_compl`) VALUES
+(1, 'Aswin', 'Kozhikode', '9865988754', 'aswin123@gmail.com', 'aswin123@', ''),
+(2, 'Amar', 'Ernakulam', '9887549865', 'amar123@gmail.com', 'amar123@', ''),
+(3, 'Amal', 'Trivandrum', '9887549865', 'amal123@gmail.com', 'amal123@', ''),
+(4, 'Goutham', 'Kollam', '9865875498', 'goutham123@gmail.com', 'goutham123@', ''),
+(5, 'qname', '', '1234567891', 'qemail@gmail.com', 'qpassword@', '');
 
 --
 -- Indexes for dumped tables
@@ -199,7 +216,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `complaintp`
@@ -223,7 +240,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
