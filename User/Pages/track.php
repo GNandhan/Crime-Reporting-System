@@ -1,8 +1,8 @@
 <?php
  include './connect.php';
 //  error_reporting(0);
- $_SESSION["email"]='';
-  if($_SESSION["email"]=="")
+ session_start();
+ if($_SESSION["email"]=="")
  {
     header('location:signin.php');
  }
@@ -121,6 +121,7 @@
     </div>
 
  <!-- Tracking Form -->
+<!-- OTP + Captcha Form -->
 <div class="container">
     <div class="row">
         <div class="col-lg col-md col-sm col">
@@ -131,8 +132,8 @@
                 <div class="row align-items-center mb-3">
                     <label class="col-sm-4 fw-bold">Acknowledgement No. <span class="text-danger">*</span>:</label>
                     <div class="col-sm d-flex gap-2">
-                        <input type="text" class="form-control rounded-3" placeholder="Enter Acknowledgement No.">
-                        <button class="btn btn-warning px-5 rounded-3">Get OTP</button>
+                        <input type="text" id="ackNo" class="form-control rounded-3" placeholder="Enter Acknowledgement No.">
+                        <button class="btn btn-warning px-5 rounded-3" id="getOtpBtn" type="button">Get OTP</button>
                     </div>
                 </div>
                 
@@ -140,7 +141,7 @@
                 <div class="row align-items-center mb-3">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control rounded-3" placeholder="Enter OTP here...">
+                        <input type="text" id="otpField" class="form-control rounded-3" placeholder="Enter OTP here...">
                     </div>
                 </div>
 
@@ -150,7 +151,7 @@
                     <div class="col-sm-8 d-flex gap-2 align-items-center">
                         <input type="text" class="form-control rounded-3" placeholder="Enter Captcha">
                         <img src="../Images/" alt="captcha" style="height:40px; border:1px solid #ccc;">
-                        <button class="btn btn-light">&#x21bb;</button>
+                        <button class="btn btn-light" type="button">&#x21bb;</button>
                     </div>
                 </div>
 
@@ -192,6 +193,20 @@
         </footer>
     </div>
     <!-- Footer Closed -->
+
+    <!-- Script for OTP functionality -->
+<script>
+  document.getElementById("getOtpBtn").addEventListener("click", function() {
+    // Generate random 4-digit OTP
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    
+    // Display popup
+    alert("OTP SENT SUCCESSFULLY");
+
+    // Set OTP in input field
+    document.getElementById("otpField").value = otp;
+  });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
