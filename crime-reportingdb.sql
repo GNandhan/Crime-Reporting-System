@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2025 at 08:43 AM
+-- Generation Time: Oct 14, 2025 at 09:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,8 @@ CREATE TABLE `complaint` (
 --
 
 INSERT INTO `complaint` (`com_id`, `com_name`, `com_address`, `com_contact`, `com_email`, `com_password`, `com_complaint`, `com_img`, `com_video`, `com_audio`) VALUES
-(1, 'comname', 'comaddress', 2147483647, 'comemail@gmail.com', 'compassword', 'complaint 1', '', '', '');
+(1, 'comname', 'comaddress', 2147483647, 'comemail@gmail.com', 'compassword', 'complaint 1', '', '', ''),
+(2, 'amal', 'thekkedath house kollam PO kollam', 2147483647, 'amal123@gmail.com', 'amal123@', 'hit and run', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -216,7 +217,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `complaintp`
