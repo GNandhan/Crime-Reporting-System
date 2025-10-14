@@ -12,7 +12,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Home</title>
+  <title>Admin-user</title>
   <link rel="stylesheet" href="../static/admin.css">
   <link rel="icon" href="../static/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -55,41 +55,52 @@
       <div class="row">
         <div class="col-lg-12">
         <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Users Details</h2>
-          <div class="container"  style="width:90%;">
-            <div class="row my-5">
-              <!-- Php code for displaying user details -->
+          <div class="container my-5" style="width:90%;">
+            <!-- Php code for displaying user details -->
 <?php  
-$sql=mysqli_query($conn,"SELECT * FROM user ORDER BY user_id ");
+$sql = mysqli_query($conn, "SELECT * FROM user ORDER BY user_id");
 $serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-    $us_id=$row['user_id'];
-    $us_name=$row['user_name'];
-    $us_loc=$row['user_location'];
-    $us_phno=$row['user_phno'];
-    $us_mail=$row['user_email'];
+if(mysqli_num_rows($sql) > 0) {
 ?>
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
-                <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
-                  <img src="../static/profile.png" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
-                  <div class="card-body">
-                    <div class="card-title fs-2 fw-bold"><?php echo $us_name; ?></div>
-                    <p class="card-text text-secondary"><?php echo $us_loc; ?></p>
-                    <p class="card-text text-secondary"><?php echo $us_phno; ?></p>
-                    <p class="card-text text-secondary"><?php echo $us_mail; ?></p>
-                  </div>
-                </div>
-              </div>
+            <div class="table-responsive shadow-sm rounded-2">
+              <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+<?php
+while($row = mysqli_fetch_assoc($sql)) {
+?>
+                  <tr>
+                    <th scope="row"><?php echo $serialNo++; ?></th>
+                    <td><?php echo htmlspecialchars($row['user_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_location']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_phno']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_email']); ?></td>
+                  </tr>
 <?php
 }
 ?>
+                </tbody>
+              </table>
             </div>
+<?php
+} else {
+  echo "<div class='alert alert-warning text-center mt-5'>No Users Found</div>";
+}
+?>
           </div>
         </div>
       </div>
       <div class="row">
 <!-- Section 8 -->
-  <div class="container-fluid" >
+  <div class="container-fluid">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
       <div class="col-md-4 d-flex align-items-center">
         <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>

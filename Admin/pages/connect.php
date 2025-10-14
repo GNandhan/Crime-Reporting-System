@@ -2,8 +2,8 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$db = "foodbee";
-// $db = "crime-reportingdb";
+// $db = "foodbee";
+$db = "crime-reportingdb";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
 // Check connection

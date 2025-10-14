@@ -2,7 +2,7 @@
  include './connect.php';
 //  error_reporting(0);
  session_start();
-//  $_SESSION["email"]='';
+ $_SESSION["email"]='';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,6 +175,8 @@ if(isset($_POST["usrlog"]))
 if($check > 0) {
   $_SESSION["email"] = $email;
   $_SESSION["password"] = $password;
+   header("location: complaint.php");
+
   echo '<script>window.location.href = "complaint.php";</script>';
 }
 

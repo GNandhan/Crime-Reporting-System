@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
- error_reporting(0);
+ // error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -12,12 +12,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Home</title>
+  <title>Admin-complaint</title>
   <link rel="stylesheet" href="../static/admin.css">
   <link rel="icon" href="../static/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -34,6 +33,7 @@
         <li><a href="./admin-staff.php"><i class="fa fa-user"></i>Staff</a></li>
       </ul>
     </aside>
+
     <div id="navbar-wrapper">
       <nav class="navbar navbar-inverse">
         <div class="container-fluid justify-content-between">
@@ -45,78 +45,86 @@
               <img src="../static/user.png" alt="" width="40">
             </button>
             <ul class="dropdown-menu" style="margin-right:20px;">
-                <li><a class="dropdown-item" href="admin-login.php">Log out</a></li>
+              <li><a class="dropdown-item" href="admin-login.php">Log out</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </div>
+
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">COMPLAINTS</h2>
-          <div class="container">
-            <div class="row my-5">
-<?php  
-$sql=mysqli_query($conn,"SELECT * FROM catering ORDER BY catering_id ");
-$serialNo = 1;
-while($row=mysqli_fetch_assoc($sql))
-{
-    $cat_id=$row['catering_id'];
-    $cat_name=$row['catering_name'];
-    $cat_own=$row['catering_owner'];
-    $cat_no=$row['catering_no'];
-    $cat_location=$row['catering_location'];
-    $cat_mail=$row['catering_email'];
-?>
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
-                <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
-                  <!-- <img src="../static/staff/<?php echo $staff_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;"> -->
-                  <div class="card-body">
-                    <div class="card-title fs-2 fw-bold"><?php echo $cat_name; ?></div>
-                    <p class="card-text text-secondary"><?php echo $cat_own; ?></p>
-                    <p class="card-text text-secondary"><?php echo $cat_no; ?></p>
-                    <p class="card-text text-secondary"><?php echo $cat_mail; ?></p>
-                    <p class="card-text text-secondary"><?php echo $cat_location; ?></p>
-                  </div>
-                </div>
-              </div>
-<?php
-}
-?>             
+          <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">COMPLAINTS</h2>
+          <div class="container my-5">
+            <div class="table-responsive shadow-lg rounded-4">
+              <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Complaint</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php  
+                    $sql = mysqli_query($conn, "SELECT * FROM complaint ORDER BY com_id");
+                    $serialNo = 1;
+                    while($row = mysqli_fetch_assoc($sql)) {
+                      $com_name = $row['com_name'];
+                      $com_address = $row['com_address'];
+                      $com_contact = $row['com_contact'];
+                      $com_email = $row['com_email'];
+                      $com_complaint = $row['com_complaint'];
+                  ?>
+                  <tr>
+                    <th scope="row"><?php echo $serialNo++; ?></th>
+                    <td><?php echo $com_name; ?></td>
+                    <td><?php echo $com_address; ?></td>
+                    <td><?php echo $com_contact; ?></td>
+                    <td><?php echo $com_email; ?></td>
+                    <td><?php echo $com_complaint; ?></td>
+                  </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Footer -->
       <div class="row">
-<!-- Section 8 -->
-  <div class="container-fluid" >
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>
+        <div class="container-fluid">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+              <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li class="ms-3"><a class="text-dark" href="#"><i class="bi bi-facebook"></i></a></li>
+              <li class="ms-3"><a class="text-dark" href="#"><i class="bi bi-instagram"></i></a></li>
+              <li class="ms-3"><a class="text-dark" href="#"><i class="bi bi-twitter-x"></i></a></li>
+            </ul>
+          </footer>
+        </div>
       </div>
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
-        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
-      </ul>
-    </footer>
-  </div>
-<!-- Section 8 closed -->
-      </div>
+      <!-- Footer end -->
+
     </section>
   </div>
 <!-- Dashboard body -->
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script>
-    const $button = document.querySelector('#sidebar-toggle');
-    const $wrapper = document.querySelector('#wrapper');
-    $button.addEventListener('click', (e) => {
-      e.preventDefault();
-      $wrapper.classList.toggle('toggled');
-    });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+  const $button = document.querySelector('#sidebar-toggle');
+  const $wrapper = document.querySelector('#wrapper');
+  $button.addEventListener('click', (e) => {
+    e.preventDefault();
+    $wrapper.classList.toggle('toggled');
+  });
+</script>
 </body>
 </html>

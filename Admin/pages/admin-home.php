@@ -1,6 +1,6 @@
 <?php
  include './connect.php';
- error_reporting(0);
+//  error_reporting(0);
  session_start();
  if($_SESSION["email"]=="")
  {
@@ -53,9 +53,9 @@
     </div>
 <?php
 // Query to get the counts
-$result = $conn->query("SELECT COUNT(*) AS catering_count FROM catering");
+$result = $conn->query("SELECT COUNT(*) AS complaint_count FROM complaint");
 $row = $result->fetch_assoc();
-$catering_count = $row['catering_count'];
+$complaint_count = $row['complaint_count'];
 
 $result = $conn->query("SELECT COUNT(*) AS staff_count FROM staff");
 $row = $result->fetch_assoc();
@@ -76,7 +76,7 @@ $user_count = $row['user_count'];
                 <div class="card text-decoration-none h-100 rounded-4 py-4 shadow border-0">
                   <div class="card-body">
                     <h5 class="card-title fs-1 text-end fw-bold text-primary border-end px-2 border-2 border-primary">COMPLAINTS</h5>
-                    <div class="card-text fw-bold display-3 "><?php echo $catering_count; ?></div>
+                    <div class="card-text fw-bold display-3 "><?php echo $complaint_count; ?></div>
                   </div>
                 </div>
               </div>

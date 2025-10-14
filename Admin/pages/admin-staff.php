@@ -12,7 +12,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin-Home</title>
+  <title>Admin-staff</title>
   <link rel="stylesheet" href="../static/admin.css">
   <link rel="icon" href="../static/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -64,8 +64,8 @@ while($row=mysqli_fetch_assoc($sql))
 {
     $staff_id=$row['staff_id'];
     $staff_name=$row['staff_name'];
-    $staff_qua=$row['staff_quantity'];
-    $staff_type=$row['staff_type'];
+    $crime_name=$row['crime_name'];
+    $fir_id=$row['fir_id'];
     $staff_img=$row['staff_img'];
     $staff_date=$row['staff_date'];
     $staff_location=$row['staff_location'];
@@ -73,11 +73,12 @@ while($row=mysqli_fetch_assoc($sql))
 ?>
               <div class="col-lg-3 col-md-4 col-sm-6 col-12 my-3">
                 <div class="card text-decoration-none h-100 rounded-5 p-3 border-3 border-warning-subtle border-top-0 shadow-lg">
-                  <img src="../../Catering/static/staff/<?php echo $staff_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
+                  <!-- <img src="../../Catering/static/staff/<?php echo $staff_img; ?>" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;"> -->
+                  <img src="../static/profile.png" class="card-img-top rounded-top-4 mx-auto" alt="..." style="width:150px;">
                   <div class="card-body">
                     <div class="card-title fs-2 fw-bold"><?php echo $staff_name; ?></div>
-                    <p class="card-text text-secondary"><?php echo $staff_qua; ?></p>
-                    <p class="card-text text-secondary"><?php echo $staff_type; ?></p>
+                    <p class="card-text text-secondary"><?php echo $crime_name; ?></p>
+                    <p class="card-text text-secondary"><?php echo $fir_id; ?></p>
                     <p class="card-text text-secondary"><?php echo $us_mail; ?></p>
                     <p class="card-text text-secondary"><?php echo $staff_location; ?></p>
                     <p class="card-text text-dark"><?php echo $staff_date; ?></p>
