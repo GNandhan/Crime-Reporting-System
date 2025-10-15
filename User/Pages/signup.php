@@ -186,8 +186,11 @@
     $cumail= $_POST["cusemail"];
     $cupass= $_POST["cuspass"];
 
+     // Hash password before saving
+    $hashedPassword = password_hash($cupass, PASSWORD_BCRYPT);
+
 $sql = mysqli_query($conn,"INSERT INTO user(user_name, user_phno, user_email, user_password)
- VALUES ('$cuname', '$cumob', '$cumail', '$cupass')");
+ VALUES ('$cuname', '$cumob', '$cumail', '$hashedPassword')");
 
 if ($sql == TRUE)
 {

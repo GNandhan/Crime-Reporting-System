@@ -75,7 +75,7 @@
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="./signin.php">Login</a>
+                            <a class="nav-link text-white" href="./signin.php">Logout</a>
                         </li>
                     </ul>
                 </form>
