@@ -186,6 +186,7 @@
     $cumail= $_POST["cusemail"];
     $cupass= $_POST["cuspass"];
 
+    
      // Hash password before saving
     $hashedPassword = password_hash($cupass, PASSWORD_BCRYPT);
 

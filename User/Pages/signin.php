@@ -164,28 +164,27 @@
 
 <!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
 <?php
-if(isset($_POST["usrlog"]))
-{
-  $email=$_POST["email"];
-  $password=$_POST["pass"];
-  
-  $sq=mysqli_query($conn,"SELECT * FROM user WHERE user_email='$email' and user_password='$password'");
-  $check=mysqli_num_rows($sq);
-  
-if($check > 0) {
-  $_SESSION["email"] = $email;
-  $_SESSION["password"] = $password;
-   header("location: complaint.php");
+if (isset($_POST["usrlog"])) {
+    $email = $_POST["email"];
+    $password = $_POST["pass"];
 
- echo '<script type="text/javascript">window.location = "complaint.php"</script>';
-} 
-else
-{
-echo "<script type='text/javascript'>alert('Wrong Email or Password');</script>";
+    $query = mysqli_query($conn, "SELECT * FROM user WHERE user_email='$email'");
+    $user = mysqli_fetch_assoc($query);
 
-}
+    if ($user) {
+        // Verify hashed password
+        if (password_verify($password, $user['user_password'])) {
+            $_SESSION["email"] = $email;
+            echo '<script>window.location.href = "complaint.php";</script>';
+        } else {
+            echo "<script>alert('Incorrect password. Please try again.');</script>";
+        }
+    } else {
+        echo "<script>alert('No user found with this email.');</script>";
+    }
 }
 ?>
+
     <!-- Footer -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
