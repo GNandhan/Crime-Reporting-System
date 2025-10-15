@@ -72,7 +72,7 @@
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="../Pages/signin.php">Login</a>
+                            <a class="nav-link text-white" href="./signin.php">Login</a>
                         </li>
                     </ul>
                 </form>
@@ -177,12 +177,12 @@ if($check > 0) {
   $_SESSION["password"] = $password;
    header("location: complaint.php");
 
-  echo '<script>window.location.href = "complaint.php";</script>';
-}
-
+ echo '<script type="text/javascript">window.location = "complaint.php"</script>';
+} 
 else
 {
-echo "<script type= 'text/javascript'>alert('Error: " . $sql . "Wrong Password" . $conn->error."');</script>";
+echo "<script type='text/javascript'>alert('Wrong Email or Password');</script>";
+
 }
 }
 ?>

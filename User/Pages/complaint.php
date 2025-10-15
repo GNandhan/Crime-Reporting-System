@@ -1,11 +1,10 @@
 <?php
- include './connect.php';
+include './connect.php';
 //  error_reporting(0);
- session_start();
- if($_SESSION["email"]=="")
- {
+session_start();
+if ($_SESSION["email"] == "") {
     header('location:signin.php');
- }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +59,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../../index.html">Home</a>
+                        <a class="nav-link text-white" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>
@@ -75,7 +74,7 @@
                 <form class="d-flex" role="search">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="../Pages/signin.php">Login</a>
+                            <a class="nav-link text-white" href="./signin.php">Logout</a>
                         </li>
                     </ul>
                 </form>
@@ -91,12 +90,12 @@
                 <div class="container border-start">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none h4" href="../../index.html">अपराध रिपोर्टिंग पोर्टल</a>
+                            <a class="text-dark text-decoration-none h4" href="./index.php">अपराध रिपोर्टिंग पोर्टल</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none h4" href="../../index.html">CRIME REPORTING
+                            <a class="text-dark text-decoration-none h4" href="./index.php">CRIME REPORTING
                                 PORTAL</a>
                         </div>
                     </div>
@@ -111,7 +110,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none" href="../../index.html">Home</a> > Register a complaint
+                            <a class="text-dark text-decoration-none" href="./index.php">Home</a> > Register a complaint
                         </div>
                     </div>
                 </div>
@@ -119,110 +118,106 @@
         </div>
     </div>
 
-<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Complaint Form</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form method="post">
-          <!-- Name & Phone (same row) -->
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-floating">
-                <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your Name" name="comname" required>
-                <label for="floatingName">Name</label>
-              </div>
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">Complaint Form</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 pt-0">
+                    <form method="post">
+                        <!-- Name & Phone (same row) -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your Name" name="comname" required>
+                                    <label for="floatingName">Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="9876543210" pattern="[0-9]{10}" name="commob" required>
+                                    <label for="floatingPhone">Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-floating my-3">
+                            <textarea class="form-control rounded-3" id="floatingAddress" placeholder="Your Address" style="height: 100px;" name="comaddress" required></textarea>
+                            <label for="floatingAddress">Address</label>
+                        </div>
+
+                        <!-- Email & Password (same row) -->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" name="comemail" required>
+                                    <label for="floatingEmail">Email Id</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="compass" required>
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Complaint -->
+                        <div class="form-floating my-3">
+                            <textarea class="form-control rounded-3" id="floatingComplaint" placeholder="Write your complaint here..." style="height: 120px;" name="comcompl" required></textarea>
+                            <label for="floatingComplaint">Complaint</label>
+                        </div>
+
+                        <!-- Uploads -->
+                        <div class="mb-3">
+                            <label for="uploadImage" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="uploadImage" accept="image/*">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="uploadVideo" class="form-label">Upload Video</label>
+                            <input class="form-control" type="file" id="uploadVideo" accept="video/*">
+                        </div>
+
+                        <!-- Submit -->
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="comsubmit">Submit</button>
+                        <small class="text-body-secondary">By clicking Submit, you agree to the terms of use.</small>
+
+                        <hr class="my-4">
+
+                    </form>
+                </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-floating">
-                <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="9876543210" pattern="[0-9]{10}" name="commob" required>
-                <label for="floatingPhone">Phone Number</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Address -->
-          <div class="form-floating my-3">
-            <textarea class="form-control rounded-3" id="floatingAddress" placeholder="Your Address" style="height: 100px;" name="comaddress" required></textarea>
-            <label for="floatingAddress">Address</label>
-          </div>
-
-          <!-- Email & Password (same row) -->
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-floating">
-                <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" name="comemail" required>
-                <label for="floatingEmail">Email Id</label>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-floating">
-                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="compass" required>
-                <label for="floatingPassword">Password</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Complaint -->
-          <div class="form-floating my-3">
-            <textarea class="form-control rounded-3" id="floatingComplaint" placeholder="Write your complaint here..." style="height: 120px;" name="comcompl" required></textarea>
-            <label for="floatingComplaint">Complaint</label>
-          </div>
-
-          <!-- Uploads -->
-          <div class="mb-3">
-            <label for="uploadImage" class="form-label">Upload Image</label>
-            <input class="form-control" type="file" id="uploadImage" accept="image/*">
-          </div>
-
-          <div class="mb-3">
-            <label for="uploadVideo" class="form-label">Upload Video</label>
-            <input class="form-control" type="file" id="uploadVideo" accept="video/*">
-          </div>
-
-          <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="comsubmit">Submit</button>
-          <small class="text-body-secondary">By clicking Submit, you agree to the terms of use.</small>
-
-          <hr class="my-4">
-
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- PHP CODE FOR INSERTING THE DATA -->
-<?php
-    if(isset($_POST["comsubmit"]))
-    {
-    $comname= $_POST["comname"];
-    $commob= $_POST["commob"];
-    $comaddress= $_POST["comaddress"];
-    $commail= $_POST["comemail"];
-    $compass= $_POST["compass"];
-    $comcompl= $_POST["comcompl"];
+    <!-- PHP CODE FOR INSERTING THE DATA -->
+    <?php
+    if (isset($_POST["comsubmit"])) {
+        $comname = $_POST["comname"];
+        $commob = $_POST["commob"];
+        $comaddress = $_POST["comaddress"];
+        $commail = $_POST["comemail"];
+        $compass = $_POST["compass"];
+        $comcompl = $_POST["comcompl"];
 
-$sql = mysqli_query($conn,"INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_complaint)
+        $sql = mysqli_query($conn, "INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_complaint)
  VALUES ('$comname', '$commob', '$comaddress', '$commail', '$compass', '$comcompl')");
 
-if ($sql == TRUE)
-{
-// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-echo '<script type="text/javascript">
+        if ($sql == TRUE) {
+            // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+            echo '<script type="text/javascript">
 window.location = "signin.php"
 </script>';
-} 
-else
-{
-// echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
-echo 'wrong username or password'; 
-}
-}
-?>
+        } else {
+            // echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
+            echo 'wrong username or password';
+        }
+    }
+    ?>
 
     <!-- Footer -->
     <div class="container">

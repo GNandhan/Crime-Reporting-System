@@ -1,3 +1,11 @@
+<?php
+include './connect.php';
+//  error_reporting(0);
+session_start();
+if ($_SESSION["email"] == "") {
+    header('location:signin.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Page</title>
-    <link rel="icon" href="./User/Images/logo.png">
+    <link rel="icon" href="../Images/logo.png">
     <link rel="stylesheet" href="Css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -52,64 +60,64 @@
 </head>
 
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg fnt sticky-top" style="background-color: #0d6efd; z-index: 1030;">
-    <div class="container-fluid mx-auto">
-        <a class="navbar-brand" href="#">
-            <img src="./User/Images/logo.png" alt="" width="100%" height="30px">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                <li class="nav-item"><a class="nav-link text-white" href="./index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="./User/Pages/signin.php">Register a Complaint</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="./User/Pages/signin.php">Track your Complaint</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="./User/Pages/contact.php">Contact</a></li>
-            </ul>
-            <form class="d-flex" role="search">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link text-white" href="./User/Pages/signin.php">Login</a></li>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fnt sticky-top" style="background-color: #0d6efd; z-index: 1030;">
+        <div class="container-fluid mx-auto">
+            <a class="navbar-brand" href="#">
+                <img src="./User/Images/logo.png" alt="" width="100%" height="30px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item"><a class="nav-link text-white" href="./index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./complaint.php">Register a Complaint</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./track.php">Track your Complaint</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="./contact.php">Contact</a></li>
                 </ul>
-            </form>
+                <form class="d-flex" role="search">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link text-white" href="./signin.php">Logout</a></li>
+                    </ul>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Header -->
-<div class="container-fluid p-3 border-bottom sticky-top bg-white" style="z-index:1020;">
-    <div class="row">
-        <div class="col">
-            <div class="container border-start">
-                <div class="row">
-                    <div class="col">
-                        <a class="text-dark text-decoration-none h4" href="./index.html">अपराध रिपोर्टिंग पोर्टल</a>
+    <!-- Header -->
+    <div class="container-fluid p-3 border-bottom sticky-top bg-white" style="z-index:1020;">
+        <div class="row">
+            <div class="col">
+                <div class="container border-start">
+                    <div class="row">
+                        <div class="col">
+                            <a class="text-dark text-decoration-none h4" href="./index.php">अपराध रिपोर्टिंग पोर्टल</a>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a class="text-dark text-decoration-none h4" href="./index.html">CRIME REPORTING PORTAL</a>
+                    <div class="row">
+                        <div class="col">
+                            <a class="text-dark text-decoration-none h4" href="./index.php">CRIME REPORTING PORTAL</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Card -->
     <div class="container p-5">
         <div class="row">
             <div class="col-lg col-md col-sm-12 col-12 p-3">
                 <div class="card frosted rounded-4 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/cardimg1.png" class="card-img-top" alt="..."
+                    <img src="../Images/cardimg1.png" class="card-img-top" alt="..."
                         style="height: 200px; object-fit: contain;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Financial Fraud</h5>
                         <p class="card-text flex-grow-1"></p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 btn-primary mt-auto">Register a
+                        <a href="./complaint.php" class="btn rounded-3 btn-primary mt-auto">Register a
                             Complaint</a>
                     </div>
                 </div>
@@ -117,12 +125,12 @@
 
             <div class="col-lg col-md col-sm-12 col-12 p-3">
                 <div class="card frosted rounded-4 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/cardimg2.png" class="card-img-top" alt="..."
+                    <img src="../Images/cardimg2.png" class="card-img-top" alt="..."
                         style="height: 200px; object-fit: contain;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Cyber Crime</h5>
                         <p class="card-text flex-grow-1"></p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 btn-primary mt-auto">Register a
+                        <a href="./complaint.php" class="btn rounded-3 btn-primary mt-auto">Register a
                             Complaint</a>
                     </div>
                 </div>
@@ -130,12 +138,12 @@
 
             <div class="col-lg col-md col-sm-12 col-12 p-3">
                 <div class="card frosted rounded-4 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/cardimg3.png" class="card-img-top" alt="..."
+                    <img src="../Images/cardimg3.png" class="card-img-top" alt="..."
                         style="height: 200px; object-fit: contain;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">Women/ Child Related Crime</h5>
                         <p class="card-text flex-grow-1"></p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 btn-primary mt-auto">Register a
+                        <a href="./complaint.php" class="btn rounded-3 btn-primary mt-auto">Register a
                             Complaint</a>
                     </div>
                 </div>
@@ -154,51 +162,51 @@
         <div class="row p-4">
             <div class="col-lg col-md col-sm-12 col-12">
                 <div class="card rounded-4 py-3 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/icon1.png" class="card-img-top mx-auto d-block p-2" alt="..."
+                    <img src="../Images/icon1.png" class="card-img-top mx-auto d-block p-2" alt="..."
                         style="height: 100px; width: auto; object-fit: contain;">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">CITIZEN MANUAL</h5>
                         <p class="card-text flex-grow-1">It is a document to describe the functionalities and workflow
                             that is provided to citizens on the cybercrime portal for reporting cybercrimes.</p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
+                        <a href="./complaint.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg col-md col-sm-12 col-12">
                 <div class="card rounded-4 py-3 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/icon2.png" class="card-img-top mx-auto d-block p-2" alt="..."
+                    <img src="../Images/icon2.png" class="card-img-top mx-auto d-block p-2" alt="..."
                         style="height: 100px; width: auto; object-fit: contain;">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">CYBER SAFETY MANUAL</h5>
                         <p class="card-text flex-grow-1">To stay safe in the online world, it is important to follow
                             important cyber safety practices which may help in protecting ourselves and our families
                             from imminent threats that may harm our data a shadow-smnd devices.</p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 btn-light">Read more</a>
+                        <a href="./complaint.php" class="btn rounded-3 btn-light">Read more</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg col-md col-sm-12 col-12">
                 <div class="card rounded-4 py-3 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/icon3.png" class="card-img-top mx-auto d-block p-2" alt="..."
+                    <img src="../Images/icon3.png" class="card-img-top mx-auto d-block p-2" alt="..."
                         style="height: 100px; width: auto; object-fit: contain;">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">CYBER AWARENESS</h5>
                         <p class="card-text flex-grow-1">Cyber awareness is an ongoing process of educating employees
                             and citizens about the threats that lurk in cyberspace and how to act responsibly.</p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
+                        <a href="./complaint.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg col-md col-sm-12 col-12">
                 <div class="card rounded-4 py-3 shadow h-100" style="width: 18rem;">
-                    <img src="./User/Images/icon4.png" class="card-img-top mx-auto d-block p-2" alt="..."
+                    <img src="../Images/icon4.png" class="card-img-top mx-auto d-block p-2" alt="..."
                         style="height: 100px; width: auto; object-fit: contain;">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title">DAILY DIGEST</h5>
                         <p class="card-text flex-grow-1">Comprehensive document prepared by Indian Cybercrime
                             Coordination Centre (I4C) to aware employees and citizens about cyber fraud modus operandi.
                         </p>
-                        <a href="./User/Pages/signin.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
+                        <a href="./complaint.php" class="btn rounded-3 shadow-sm btn-light">Read more</a>
                     </div>
                 </div>
             </div>
