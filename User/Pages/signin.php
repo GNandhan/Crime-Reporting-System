@@ -158,54 +158,26 @@ $_SESSION["email"] = '';
     </div>
 
 
-<!-- ✅ PHP CODE FOR LOGIN VERIFICATION -->
-<?php
-include './connect.php';
-session_start();
+    <!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
+    <?php
+    if (isset($_POST["usrlog"])) {
+        $email = $_POST["email"];
+        $password = $_POST["pass"];
 
-if (isset($_POST['usrlog'])) {
-    $email = trim($_POST['email']);
-    $password = $_POST['pass'];
+        $sq = mysqli_query($conn, "SELECT * FROM user WHERE user_email='$email' and user_password='$password'");
+        $check = mysqli_num_rows($sq);
 
-    if (empty($email) || empty($password)) {
-        echo "<script>alert('Enter email and password');</script>";
-    } else {
-        // Prepared statement: fetch hash for the email
-        $stmt = $conn->prepare("SELECT user_password FROM user WHERE user_email = ?");
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $stmt->store_result();
+        if ($check > 0) {
+            $_SESSION["email"] = $email;
+            $_SESSION["password"] = $password;
+            header("location: complaint.php");
 
-        if ($stmt->num_rows === 1) {
-            $stmt->bind_result($hashedPasswordFromDB);
-            $stmt->fetch();
-            $stmt->close();
-
-            // Verify the password (this does NOT decrypt)
-            if (password_verify($password, $hashedPasswordFromDB)) {
-                // Optional: rehash if needed (keeps algorithm up to date)
-                if (password_needs_rehash($hashedPasswordFromDB, PASSWORD_BCRYPT)) {
-                    $newHash = password_hash($password, PASSWORD_BCRYPT);
-                    $upd = $conn->prepare("UPDATE user SET user_password = ? WHERE user_email = ?");
-                    $upd->bind_param('ss', $newHash, $email);
-                    $upd->execute();
-                    $upd->close();
-                }
-
-                $_SESSION['email'] = $email;
-                header("Location: complaint.php");
-                exit();
-            } else {
-                echo "<script>alert('Wrong Email or Password');</script>";
-            }
+            echo '<script type="text/javascript">window.location = "complaint.php"</script>';
         } else {
-            $stmt->close();
-            echo "<script>alert('No account found with that email');</script>";
+            echo "<script type='text/javascript'>alert('Wrong Email or Password');</script>";
         }
     }
-}
-?>
-
+    ?>
     <!-- Footer -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

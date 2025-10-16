@@ -1,5 +1,5 @@
 <?php
-include './connect.php';
+ include './connect.php';
 //  error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -117,112 +117,92 @@ include './connect.php';
 
 
     <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <h1 class="fw-bold mb-0 fs-2">Sign Up</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-5 pt-0">
-                    <form method="post">
-                        <!-- Name -->
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Enter your name" name="cusname" required>
-                            <label for="floatingName">Full Name</label>
-                        </div>
+  <div class="modal-dialog">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Sign Up</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form method="post">
+          <!-- Name -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Enter your name" name="cusname" required>
+            <label for="floatingName">Full Name</label>
+          </div>
 
-                        <!-- Location -->
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingLocation" placeholder="Enter your Address" name="cusaddress" required>
-                            <label for="floatingLocation">Address</label>
-                        </div>
+          <!-- Location -->
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-3" id="floatingLocation" placeholder="Enter your Address"  name="cusaddress" required>
+            <label for="floatingLocation">Address</label>
+          </div>
 
-                        <!-- Phone -->
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Enter your phone number" pattern="[0-9]{10}" name="cusmob" required>
-                            <label for="floatingPhone">Phone Number</label>
-                        </div>
+          <!-- Phone -->
+          <div class="form-floating mb-3">
+            <input type="tel" class="form-control rounded-3" id="floatingPhone" placeholder="Enter your phone number" pattern="[0-9]{10}"  name="cusmob" required>
+            <label for="floatingPhone">Phone Number</label>
+          </div>
 
-                        <!-- Email -->
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" name="cusemail" required>
-                            <label for="floatingInput">Email Id</label>
-                        </div>
+          <!-- Email -->
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com"  name="cusemail" required>
+            <label for="floatingInput">Email Id</label>
+          </div>
 
-                        <!-- Password with eye icon -->
-                        <div class="input-group mb-3">
-                            <div class="form-floating flex-grow-1">
-                                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="cuspass" required>
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                                <i class="bi bi-eye" id="eyeIcon"></i>
-                            </button>
-                        </div>
-
-                        <!-- Submit -->
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="cussubmit">Sign up</button>
-                        <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
-
-                        <hr class="my-4">
-
-                        <!-- Register Link -->
-                        <div class="text-center">
-                            <div>or</div>
-                            <a href="./signin.html" class="h6 text-decoration-none">Login now</a>
-                        </div>
-                    </form>
-                </div>
+          <!-- Password with eye icon -->
+          <div class="input-group mb-3">
+            <div class="form-floating flex-grow-1">
+              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="cuspass" required>
+              <label for="floatingPassword">Password</label>
             </div>
-        </div>
+            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+              <i class="bi bi-eye" id="eyeIcon"></i>
+            </button>
+          </div>
+
+          <!-- Submit -->
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit"  name="cussubmit">Sign up</button>
+          <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
+
+          <hr class="my-4">
+
+          <!-- Register Link -->
+          <div class="text-center">
+            <div>or</div>
+            <a href="./signin.html" class="h6 text-decoration-none">Login now</a>
+          </div>
+        </form>
+      </div>
     </div>
-    <!-- PHP CODE FOR INSERTING THE DATA -->
- <?php
-include './connect.php'; // $conn = mysqli_connect(...)
+  </div>
+</div>
+<!-- PHP CODE FOR INSERTING THE DATA -->
+<?php
+    if(isset($_POST["cussubmit"]))
+    {
+    $cuname= $_POST["cusname"];
+    $cumob= $_POST["cusmob"];
+    $cuaddress= $_POST["cusaddress"];
+    $cumail= $_POST["cusemail"];
+    $cupass= $_POST["cuspass"];
 
-// Handle signup
-if (isset($_POST['cussubmit'])) {
-    $cuname    = trim($_POST['cusname']);
-    $cumob     = trim($_POST['cusmob']);
-    $cuaddress = trim($_POST['cusaddress']);
-    $cumail    = trim($_POST['cusemail']);
-    $cupass    = $_POST['cuspass'];
+$sql = mysqli_query($conn,"INSERT INTO user(user_name, user_phno, user_email, user_password)
+ VALUES ('$cuname', '$cumob', '$cumail', '$cupass')");
 
-    // Basic checks
-    if (empty($cuname) || empty($cumail) || empty($cupass)) {
-        echo "<script>alert('Please fill required fields');</script>";
-    } else {
-        // Check if email already exists
-        $stmt = $conn->prepare("SELECT user_id FROM user WHERE user_email = ?");
-        $stmt->bind_param('s', $cumail);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows > 0) {
-            echo "<script>alert('Email already registered');</script>";
-            $stmt->close();
-        } else {
-            $stmt->close();
-
-            // Hash password with password_hash (bcrypt by default)
-            $hashedPassword = password_hash($cupass, PASSWORD_BCRYPT);
-
-            // Insert using prepared statement
-            $ins = $conn->prepare("INSERT INTO user (user_name, user_phno, user_email, user_password, user_address) VALUES (?, ?, ?, ?, ?)");
-            $ins->bind_param('sssss', $cuname, $cumob, $cumail, $hashedPassword, $cuaddress);
-            if ($ins->execute()) {
-                $ins->close();
-                // Redirect to signin
-                header("Location: signin.php");
-                exit();
-            } else {
-                // Debugging: show DB error (remove in production)
-                echo "<script>alert('DB Error: " . addslashes($conn->error) . "');</script>";
-            }
-        }
-    }
+if ($sql == TRUE)
+{
+// echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
+echo '<script type="text/javascript">
+window.location = "signin.php"
+</script>';
+} 
+else
+{
+// echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
+echo 'wrong username or password'; 
+}
 }
 ?>
-
 
 
     <!-- Footer -->
@@ -250,26 +230,26 @@ if (isset($_POST['cussubmit'])) {
 
 
     <script>
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#floatingPassword");
-        const eyeIcon = document.querySelector("#eyeIcon");
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#floatingPassword");
+  const eyeIcon = document.querySelector("#eyeIcon");
 
-        togglePassword.addEventListener("click", function() {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
+  togglePassword.addEventListener("click", function () {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
 
-            // toggle eye / eye-slash
-            if (type === "password") {
-                eyeIcon.classList.remove("bi-eye-slash");
-                eyeIcon.classList.add("bi-eye");
-            } else {
-                eyeIcon.classList.remove("bi-eye");
-                eyeIcon.classList.add("bi-eye-slash");
-            }
-        });
-    </script>
-    <!-- Bootstrap Icons CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    // toggle eye / eye-slash
+    if (type === "password") {
+      eyeIcon.classList.remove("bi-eye-slash");
+      eyeIcon.classList.add("bi-eye");
+    } else {
+      eyeIcon.classList.remove("bi-eye");
+      eyeIcon.classList.add("bi-eye-slash");
+    }
+  });
+</script>
+<!-- Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
     <!-- Footer Closed -->
