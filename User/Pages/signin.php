@@ -1,8 +1,8 @@
 <?php
- include './connect.php';
+include './connect.php';
 //  error_reporting(0);
- session_start();
- $_SESSION["email"]='';
+session_start();
+$_SESSION["email"] = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,69 +118,90 @@
     </div>
 
 
-<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Sign In</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-5 pt-0">
-        <form method="post">
-          <!-- User ID -->
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" name="email" required>
-            <label for="floatingInput">Email Id</label>
-          </div>
+    <!-- Signin Form -->
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2">Sign In</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 pt-0">
+                    <form method="post">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com" name="email" required>
+                            <label for="floatingInput">Email Id</label>
+                        </div>
 
-          <!-- Password with eye icon -->
-          <div class="input-group mb-3">
-            <div class="form-floating flex-grow-1">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="pass" required>
-              <label for="floatingPassword">Password</label>
+                        <div class="input-group mb-3">
+                            <div class="form-floating flex-grow-1">
+                                <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" name="pass" required>
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="bi bi-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="usrlog">Sign in</button>
+                        <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
+
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <div>or</div>
+                            <a href="./signup.php" class="h6 text-decoration-none">Register now</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-              <i class="bi bi-eye" id="eyeIcon"></i>
-            </button>
-          </div>
-
-          <!-- Submit -->
-          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="usrlog">Sign in</button>
-          <small class="text-body-secondary">By clicking Sign in, you agree to the terms of use.</small>
-
-          <hr class="my-4">
-
-          <!-- Register Link -->
-          <div class="text-center">
-            <div>or</div>
-            <a href="./signup.php" class="h6 text-decoration-none">Register now</a>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
-</div>
 
 
-<!-- PHP CODE FOR CHECKING THE INSERTED FORM IS CORRECT OR NOT THEN LOGGED IN -->
+<!-- ✅ PHP CODE FOR LOGIN VERIFICATION -->
 <?php
-if (isset($_POST["usrlog"])) {
-    $email = $_POST["email"];
-    $password = $_POST["pass"];
+include './connect.php';
+session_start();
 
-    $query = mysqli_query($conn, "SELECT * FROM user WHERE user_email='$email'");
-    $user = mysqli_fetch_assoc($query);
+if (isset($_POST['usrlog'])) {
+    $email = trim($_POST['email']);
+    $password = $_POST['pass'];
 
-    if ($user) {
-        // Verify hashed password
-        if (password_verify($password, $user['user_password'])) {
-            $_SESSION["email"] = $email;
-            echo '<script>window.location.href = "complaint.php";</script>';
-        } else {
-            echo "<script>alert('Incorrect password. Please try again.');</script>";
-        }
+    if (empty($email) || empty($password)) {
+        echo "<script>alert('Enter email and password');</script>";
     } else {
-        echo "<script>alert('No user found with this email.');</script>";
+        // Prepared statement: fetch hash for the email
+        $stmt = $conn->prepare("SELECT user_password FROM user WHERE user_email = ?");
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows === 1) {
+            $stmt->bind_result($hashedPasswordFromDB);
+            $stmt->fetch();
+            $stmt->close();
+
+            // Verify the password (this does NOT decrypt)
+            if (password_verify($password, $hashedPasswordFromDB)) {
+                // Optional: rehash if needed (keeps algorithm up to date)
+                if (password_needs_rehash($hashedPasswordFromDB, PASSWORD_BCRYPT)) {
+                    $newHash = password_hash($password, PASSWORD_BCRYPT);
+                    $upd = $conn->prepare("UPDATE user SET user_password = ? WHERE user_email = ?");
+                    $upd->bind_param('ss', $newHash, $email);
+                    $upd->execute();
+                    $upd->close();
+                }
+
+                $_SESSION['email'] = $email;
+                header("Location: complaint.php");
+                exit();
+            } else {
+                echo "<script>alert('Wrong Email or Password');</script>";
+            }
+        } else {
+            $stmt->close();
+            echo "<script>alert('No account found with that email');</script>";
+        }
     }
 }
 ?>
@@ -208,27 +229,27 @@ if (isset($_POST["usrlog"])) {
         </footer>
     </div>
 
-<script>
-  const togglePassword = document.querySelector("#togglePassword");
-  const password = document.querySelector("#floatingPassword");
-  const eyeIcon = document.querySelector("#eyeIcon");
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#floatingPassword");
+        const eyeIcon = document.querySelector("#eyeIcon");
 
-  togglePassword.addEventListener("click", function () {
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
+        togglePassword.addEventListener("click", function() {
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
 
-    // toggle eye / eye-slash
-    if (type === "password") {
-      eyeIcon.classList.remove("bi-eye-slash");
-      eyeIcon.classList.add("bi-eye");
-    } else {
-      eyeIcon.classList.remove("bi-eye");
-      eyeIcon.classList.add("bi-eye-slash");
-    }
-  });
-</script>
-<!-- Bootstrap Icons CDN -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+            // toggle eye / eye-slash
+            if (type === "password") {
+                eyeIcon.classList.remove("bi-eye-slash");
+                eyeIcon.classList.add("bi-eye");
+            } else {
+                eyeIcon.classList.remove("bi-eye");
+                eyeIcon.classList.add("bi-eye-slash");
+            }
+        });
+    </script>
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Footer Closed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
