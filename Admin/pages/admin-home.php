@@ -68,7 +68,7 @@ $user_count = $row['user_count'];
     <section id="content-wrapper">
       <div class="row">
         <div class="col-lg-12">
-        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Dashboard</h2>
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Admin Dashboard</h2>
         <div class="fs-3 fw-semibold border-start px-3 py-2 border-3 border-primary mb-5">Admin dashboard now displays Complaints, Staffs, and User Details</div>
           <div class="container" style="width:90%;">
             <div class="row my-5">
