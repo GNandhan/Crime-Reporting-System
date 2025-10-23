@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <span>Not registered yet?</span> 
-                                        <a href="./register.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
+                                        <a href="./staff-register.php" type="button" class="text-decoration-none px-1"> Create an account <i class=" fw-bold bi-arrow-up-right-circle"></i></a>
                                     </div>
                                 </form>
                             </div>
@@ -118,7 +118,7 @@ if(isset($_POST["admlog"]))
   $email=$_POST["email"];
   $password=$_POST["pass"];
   
-  $sq=mysqli_query($conn,"SELECT * FROM admin WHERE admin_email='$email' and admin_pass='$password'");
+  $sq=mysqli_query($conn,"SELECT * FROM staff WHERE staff_email='$email' and staff_pass='$password'");
   $check=mysqli_num_rows($sq);
   
 if($check>0)

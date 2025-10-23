@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2025 at 01:21 AM
+-- Generation Time: Oct 23, 2025 at 08:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -123,18 +123,19 @@ CREATE TABLE `request` (
 
 CREATE TABLE `staff` (
   `staff_id` int(11) NOT NULL,
-  `staff_name` varchar(20) NOT NULL,
-  `crime_name` varchar(20) NOT NULL,
-  `fir_id` int(11) NOT NULL
+  `staff_name` varchar(100) NOT NULL,
+  `staff_email` varchar(100) NOT NULL,
+  `staff_pass` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staff_id`, `staff_name`, `crime_name`, `fir_id`) VALUES
-(1, 'police1', 'IPC302', 10001),
-(2, 'police2', 'FIR269', 10002);
+INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_email`, `staff_pass`) VALUES
+(1, 'staff1', 'staff1@gmail.com', 'staff1@'),
+(2, 'Staff2', 'staff2@gmail.com', 'staff2@'),
+(3, 'staff3', 'staff3@gmail.com', 'staff3@');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,10 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_address`, `user_phno`, `user_e
 (4, 'Goutham', 'Kollam', '9865875498', 'goutham123@gmail.com', 'goutham123@', ''),
 (5, 'qname', '', '1234567891', 'qemail@gmail.com', 'qpassword@', ''),
 (6, 'Adarsh', '', '9988776655', 'adarsh123@gmail.com', 'adarsh123@', ''),
-(7, 'Abin Manuel', '', '8114568965', 'abin123@gmail.com', 'abin123@', '');
+(7, 'Abin Manuel', '', '8114568965', 'abin123@gmail.com', 'abin123@', ''),
+(8, 'Albert Einstein', '', '9115748693', 'albert123@gmail.com', '$2y$10$y.GTtDmg.vbV9', ''),
+(9, 'mname', '', '8111111111', 'mname1@gmail.com', '$2y$10$zb4KJysClIH8g', ''),
+(10, 'plokok', '', '9865239865', 'plokok123@gmail.com', 'plokok123@', '');
 
 --
 -- Indexes for dumped tables
@@ -198,6 +202,12 @@ ALTER TABLE `crime`
 --
 ALTER TABLE `request`
   ADD PRIMARY KEY (`request_id`);
+
+--
+-- Indexes for table `staff`
+--
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staff_id`);
 
 --
 -- Indexes for table `user`
@@ -240,10 +250,16 @@ ALTER TABLE `request`
   MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
