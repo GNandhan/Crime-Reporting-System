@@ -68,7 +68,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../../index.html">Home</a>
+                        <a class="nav-link text-white" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>

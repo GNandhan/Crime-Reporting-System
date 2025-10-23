@@ -1,0 +1,132 @@
+<?php
+ include './connect.php';
+ error_reporting(0);
+ session_start();
+ if($_SESSION["email"]=="")
+ {
+    header('location:staff-login.php');
+ }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff-user</title>
+  <link rel="stylesheet" href="../static/staff.css">
+  <link rel="icon" href="../static/logo.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- Dashboard body -->
+  <div id="wrapper">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <h2><div class="fs-3 fw-semibold">Crime Reporting</div></h2>
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="./staff-home.php"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="./staff-complaint.php"><i class="fa fa-plug"></i>Complaints</a></li>
+        <li class="active"><a href="./staff-user.php"><i class="fa fa-user"></i>Users</a></li>
+        <li><a href="./staff-staff.php"><i class="fa fa-user"></i>Staff</a></li>
+      </ul>
+    </aside>
+    <div id="navbar-wrapper">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid justify-content-between">
+          <div class="navbar-header position-absolute top-0">
+            <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </div>
+          <div class="d-flex align-items-center position-absolute end-0">
+            <button class="btn rounded-circle border-0"  data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="../static/user.png" alt="" width="40">
+            </button>
+            <ul class="dropdown-menu" style="margin-right:20px;">
+                <li><a class="dropdown-item" href="staff-login.php">Log out</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <section id="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+        <h2 class="content-title display-4 fw-semibold border-start px-3 border-4 border-dark">Users Details</h2>
+          <div class="container my-5" style="width:90%;">
+            <!-- Php code for displaying user details -->
+<?php  
+$sql = mysqli_query($conn, "SELECT * FROM user ORDER BY user_id");
+$serialNo = 1;
+if(mysqli_num_rows($sql) > 0) {
+?>
+            <div class="table-responsive shadow-sm rounded-2">
+              <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+<?php
+while($row = mysqli_fetch_assoc($sql)) {
+?>
+                  <tr>
+                    <th scope="row"><?php echo $serialNo++; ?></th>
+                    <td><?php echo htmlspecialchars($row['user_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_location']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_phno']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_email']); ?></td>
+                  </tr>
+<?php
+}
+?>
+                </tbody>
+              </table>
+            </div>
+<?php
+} else {
+  echo "<div class='alert alert-warning text-center mt-5'>No Users Found</div>";
+}
+?>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+<!-- Section 8 -->
+  <div class="container-fluid">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <span class="mb-3 mb-md-0 text-dark">&copy; 2025 Crime Reporting, Inc</span>
+      </div>
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-facebook" width="24" height="24"></i></a></li>
+        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-instagram" width="24" height="24"></i></a></li>
+        <li class="ms-3"><a class=" text-dark" href="#"><i class="bi bi-twitter-x" width="24" height="24"></i></a></li>
+      </ul>
+    </footer>
+  </div>
+<!-- Section 8 closed -->
+      </div>
+    </section>
+  </div>
+<!-- Dashboard body -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    const $button = document.querySelector('#sidebar-toggle');
+    const $wrapper = document.querySelector('#wrapper');
+    $button.addEventListener('click', (e) => {
+      e.preventDefault();
+      $wrapper.classList.toggle('toggled');
+    });
+  </script>
+</body>
+</html>

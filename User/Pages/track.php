@@ -60,7 +60,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../../index.html">Home</a>
+                        <a class="nav-link text-white" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="./complaint.php">Register a Complaint</a>
@@ -91,12 +91,12 @@
                 <div class="container border-start">
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none h4" href="../../index.html">अपराध रिपोर्टिंग पोर्टल</a>
+                            <a class="text-dark text-decoration-none h4" href="./index.php">अपराध रिपोर्टिंग पोर्टल</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a class="text-dark text-decoration-none h4" href="../../index.html">CRIME REPORTING
+                            <a class="text-dark text-decoration-none h4" href="./index.php">CRIME REPORTING
                                 PORTAL</a>
                         </div>
                     </div>
