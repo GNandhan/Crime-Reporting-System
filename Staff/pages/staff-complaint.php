@@ -65,6 +65,7 @@
                   <th>Contact</th>
                   <th>Email</th>
                   <th>Complaint</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -79,6 +80,7 @@
                   $com_contact = $row['com_contact'];
                   $com_email = $row['com_email'];
                   $com_complaint = $row['com_complaint'];
+                  $com_status = $row['com_status'];
                 ?>
                 <tr>
                   <th scope="row"><?php echo $serialNo++; ?></th>
@@ -87,6 +89,7 @@
                   <td><?php echo $com_contact; ?></td>
                   <td><?php echo $com_email; ?></td>
                   <td><?php echo substr($com_complaint, 0, 40) . '...'; ?></td>
+                  <td><?php echo $com_status; ?></td>
                   <td>
                     <button class="btn btn-sm btn-warning fw-semibold" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $com_id; ?>">
                       Show Details

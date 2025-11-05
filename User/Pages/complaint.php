@@ -126,7 +126,7 @@ if ($_SESSION["email"] == "") {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-0">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <!-- Name & Phone (same row) -->
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -172,21 +172,27 @@ if ($_SESSION["email"] == "") {
                         </div>
 
                         <!-- Uploads -->
-                        <div class="mb-3">
-                            <label for="uploadImage" class="form-label">Upload Image</label>
-                            <input class="form-control" type="file" id="uploadImage" accept="image/*">
+                        <div id="uploadsContainer" class="mb-3">
+                            <label class="form-label">Upload Images</label>
+                            <div class="input-group mb-2 file-row">
+                                <input type="file" class="form-control file-input" name="uploadImage[]" accept="image/*" required>
+                                <button type="button" class="btn btn-outline-secondary remove-file-btn" style="display:none;">Remove</button>
+                            </div>
+                            <button id="addFileBtn" type="button" class="btn btn-sm btn-secondary">+ Add more</button>
+                            <small class="form-text">Allowed: images only. Max size per file: 2MB (example).</small>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="uploadVideo" class="form-label">Upload Video</label>
-                            <input class="form-control" type="file" id="uploadVideo" accept="video/*">
+                        <!-- Preview Section -->
+                        <div id="previewContainer" class="mb-3 d-flex flex-wrap gap-2 border rounded p-2"
+                            style="min-height:60px; background-color:#f8f9fa;">
+                            <p class="text-muted m-0">Image previews will appear here...</p>
                         </div>
 
                         <!-- Submit -->
                         <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" name="comsubmit">Submit</button>
                         <small class="text-body-secondary">By clicking Submit, you agree to the terms of use.</small>
-
                         <hr class="my-4">
+
 
                     </form>
                 </div>
@@ -195,29 +201,56 @@ if ($_SESSION["email"] == "") {
     </div>
 
     <!-- PHP CODE FOR INSERTING THE DATA -->
-    <?php
-    if (isset($_POST["comsubmit"])) {
-        $comname = $_POST["comname"];
-        $commob = $_POST["commob"];
-        $comaddress = $_POST["comaddress"];
-        $commail = $_POST["comemail"];
-        $compass = $_POST["compass"];
-        $comcompl = $_POST["comcompl"];
+<?php
+if (isset($_POST["comsubmit"])) {
 
-        $sql = mysqli_query($conn, "INSERT INTO complaint(com_name, com_contact, com_address, com_email, com_password, com_complaint)
- VALUES ('$comname', '$commob', '$comaddress', '$commail', '$compass', '$comcompl')");
+    // Collect form data safely
+    $comname    = mysqli_real_escape_string($conn, $_POST["comname"]);
+    $commob     = mysqli_real_escape_string($conn, $_POST["commob"]);
+    $comaddress = mysqli_real_escape_string($conn, $_POST["comaddress"]);
+    $commail    = mysqli_real_escape_string($conn, $_POST["comemail"]);
+    $compass    = mysqli_real_escape_string($conn, $_POST["compass"]);
+    $comcompl   = mysqli_real_escape_string($conn, $_POST["comcompl"]);
 
-        if ($sql == TRUE) {
-            // echo "<script type= 'text/javascript'>alert('New record created successfully');</script>";
-            echo '<script type="text/javascript">
-window.location = "signin.php"
-</script>';
-        } else {
-            // echo "<script type= 'text/javascript'>alert('Error: " . $sql . "<br>" . $conn->error."');</script>";  
-            echo 'wrong username or password';
+    // MULTIPLE FILE UPLOAD HANDLING
+    $uploadedImages = []; // store filenames
+
+    if (!empty($_FILES['uploadImage']['name'][0])) {
+        foreach ($_FILES['uploadImage']['name'] as $key => $name) {
+
+            $filename = time() . "_" . basename($name);
+            $tempPath = $_FILES['uploadImage']['tmp_name'][$key];
+            $folder = "../Images/complaint/" . $filename;
+
+            // Upload only if file type is image
+            $fileType = mime_content_type($tempPath);
+            if (strpos($fileType, 'image') !== false) {
+
+                if (move_uploaded_file($tempPath, $folder)) {
+                    $uploadedImages[] = $filename;
+                }
+            }
         }
     }
-    ?>
+
+    // Convert image list for DB storage
+    $imageString = implode(",", $uploadedImages);
+
+    // INSERT QUERY
+    $sql = mysqli_query($conn, "INSERT INTO complaint 
+        (com_name, com_address, com_contact, com_email, com_password, com_complaint, com_img) 
+        VALUES ('$comname','$comaddress','$commob','$commail','$compass','$comcompl','$imageString')");
+
+    if ($sql) {
+        echo "<script>alert('Complaint Submitted Successfully'); window.location.href='track.php';</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
+}
+?>
+
+
+
 
     <!-- Footer -->
     <div class="container">
@@ -243,6 +276,68 @@ window.location = "signin.php"
     </div>
     <!-- Footer Closed -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('addFileBtn').addEventListener('click', function() {
+            const container = document.getElementById('uploadsContainer');
+            const row = document.createElement('div');
+            row.className = 'input-group mb-2 file-row';
+            row.innerHTML = `
+        <input type="file" class="form-control file-input" name="uploadImage[]" accept="image/*">
+        <button type="button" class="btn btn-outline-secondary remove-file-btn">Remove</button>
+    `;
+            container.insertBefore(row, this);
+        });
+
+        // Remove file input
+        document.getElementById('uploadsContainer').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove-file-btn')) {
+                const row = e.target.closest('.file-row');
+                if (row) {
+                    row.remove();
+                    updatePreview();
+                }
+            }
+        });
+
+        // Show preview of uploaded images
+        document.getElementById('uploadsContainer').addEventListener('change', function(e) {
+            if (e.target && e.target.classList.contains('file-input')) {
+                updatePreview();
+            }
+        });
+
+        function updatePreview() {
+            const previewContainer = document.getElementById('previewContainer');
+            previewContainer.innerHTML = ''; // clear previous previews
+
+            const fileInputs = document.querySelectorAll('.file-input');
+            let hasFiles = false;
+
+            fileInputs.forEach(input => {
+                Array.from(input.files).forEach(file => {
+                    if (file && file.type.startsWith('image/')) {
+                        hasFiles = true;
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.className = 'rounded border';
+                            img.style.width = '100px';
+                            img.style.height = '100px';
+                            img.style.objectFit = 'cover';
+                            previewContainer.appendChild(img);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+
+            if (!hasFiles) {
+                previewContainer.innerHTML = '<p class="text-muted m-0">Image previews will appear here...</p>';
+            }
+        }
+    </script>
+
 </body>
 
 </html>
