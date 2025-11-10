@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2025 at 08:38 AM
+-- Generation Time: Nov 11, 2025 at 12:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,18 +55,25 @@ CREATE TABLE `complaint` (
   `com_email` varchar(20) NOT NULL,
   `com_password` varchar(20) NOT NULL,
   `com_complaint` varchar(20) NOT NULL,
-  `com_img` varchar(100) NOT NULL,
-  `com_video` varchar(100) NOT NULL,
-  `com_audio` varchar(100) NOT NULL
+  `com_img` varchar(500) NOT NULL,
+  `com_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `complaint`
 --
 
-INSERT INTO `complaint` (`com_id`, `com_name`, `com_address`, `com_contact`, `com_email`, `com_password`, `com_complaint`, `com_img`, `com_video`, `com_audio`) VALUES
-(1, 'comname', 'comaddress', 2147483647, 'comemail@gmail.com', 'compassword', 'complaint 1', '', '', ''),
-(2, 'amal', 'thekkedath house kollam PO kollam', 2147483647, 'amal123@gmail.com', 'amal123@', 'hit and run', '', '', '');
+INSERT INTO `complaint` (`com_id`, `com_name`, `com_address`, `com_contact`, `com_email`, `com_password`, `com_complaint`, `com_img`, `com_status`) VALUES
+(1, 'comname', 'comaddress', 2147483647, 'comemail@gmail.com', 'compassword', 'complaint 1', '', 'Resolved'),
+(2, 'amal', 'thekkedath house kollam PO kollam', 2147483647, 'amal123@gmail.com', 'amal123@', 'hit and run', '', 'In Progress'),
+(3, 'Aravind', 'manthop house kurisumootil po thrissur 685586', 2147483647, 'aravind1@gmail.com', 'aravind1@', 'theft on public plac', '', 'In Progress'),
+(4, 'Arun', 'chandredath House malepparambil po palakkad', 2147483647, 'arun1@gmail.com', 'arun1@', 'hit and run case', '', 'Resolved'),
+(5, 'Eldose', 'qwerty', 2147483647, 'eldose1@gmail.com', 'eldose1@', 'mental abuse', '', 'In Progress'),
+(6, 'Abin', 'mamalakandam house thekkedath po ottapalam', 2147483647, 'abin1@gmail.com', 'abin1@', 'nothing', '', 'In Progress'),
+(7, 'Arthur', 'House no 2 , North state, NY', 2147483647, 'arthur123@gmail.com', 'arthur123@', 'killed', 'bg1.jpg', 'In Progress'),
+(8, 'Arthur', 'House no 2 , North state, NY', 2147483647, 'arthur123@gmail.com', 'arthur123@', 'killed', 'bg1.jpg', 'Pending'),
+(9, 'Arthur', 'House no 2 , North state, NY', 2147483647, 'arthur123@gmail.com', 'arthur123@', 'killed', '1762384826_cardimg2.png', 'In Progress'),
+(10, 'Arthur', 'House no 2 , North state, NY', 2147483647, 'arthur123@gmail.com', 'arthur123@', 'killed', '1762385484_icon1.png,1762385485_icon2.png', 'Resolved');
 
 -- --------------------------------------------------------
 
@@ -229,7 +236,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `complaint`
 --
 ALTER TABLE `complaint`
-  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `complaintp`
