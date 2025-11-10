@@ -95,7 +95,16 @@ if ($_SESSION["email"] == "") {
                       <td><?php echo $com_contact; ?></td>
                       <td><?php echo $com_email; ?></td>
                       <td><?php echo substr($com_complaint, 0, 40) . '...'; ?></td>
-                      <td><?php echo $com_status; ?></td>
+                      <!-- <td><?php echo $com_status; ?></td> -->
+                      <td>
+                        <select class="form-select form-select-sm status-dropdown"
+                          data-id="<?php echo $com_id; ?>">
+                          <option value="Pending" <?php if ($com_status == 'Pending') echo 'selected'; ?>>Pending</option>
+                          <option value="In Progress" <?php if ($com_status == 'In Progress') echo 'selected'; ?>>In Progress</option>
+                          <option value="Resolved" <?php if ($com_status == 'Resolved') echo 'selected'; ?>>Resolved</option>
+                        </select>
+                      </td>
+
 
                       <!-- <td>
                         <?php if (!empty($com_img)) { ?>
@@ -175,6 +184,31 @@ if ($_SESSION["email"] == "") {
       $wrapper.classList.toggle('toggled');
     });
   </script>
+  <script>
+    document.querySelectorAll('.status-dropdown').forEach(select => {
+      select.addEventListener('change', function() {
+        const com_id = this.getAttribute('data-id');
+        const new_status = this.value;
+
+        // Send AJAX request
+        fetch('update_status.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `com_id=${com_id}&com_status=${new_status}`
+          })
+          .then(response => response.text())
+          .then(data => {
+            console.log(data);
+            // Optional: show confirmation message
+            alert('Status updated to ' + new_status);
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    });
+  </script>
+
 </body>
 
 </html>
